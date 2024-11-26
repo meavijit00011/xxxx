@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+
+import axios from 'axios';
 import './App.css';
 import { useEffect, useState } from 'react';
-import { arr } from './a';
+import data from './4.json'
+import Thumb from './Thumb';
+import Video from './Video';
 
 
 function App() {
   const [play, setPlay] = useState(null);
-  const [arrr,setArrr] = useState(null);
+  const [list, setList] = useState([]);
   const handleTouch = (ind) => {
     setPlay(ind);
   }
-  useEffect(()=>{
-    let temp = []
-    for(let i=0; i<arr.length; i++){
-       temp = [...temp,...arr[i]];
+  useEffect(() => {
+    let temp = [];
+    for (let i = 0; i < 10; i++) {
+      temp = [...temp, ...data[i]]
     }
-    setArrr(temp);
-  },[])
+    setList(temp);
+  }, []);
+
   return (
     <div className="App">
-      {arrr && arrr.map((item, ind) => <div onTouchEnd={handleTouch.bind(null, ind)}>{play != ind && <a href={item.link1} target='_blank'><img src={item.thumbLink} height='200px' width='200px'></img></a>}{<div style={{ color: 'grey' }}>{ind}{play == ind && <a target='_blank' href={item.link1} ><video src={item.link2} width="200" height="200" loop='loop' muted autoPlay={true}></video></a>}</div>}</div>)}
+      {list.map((item, ind) => {
+        return <div onTouchEnd={handleTouch.bind(null, ind)}>{ind != play ? <Thumb link={item.link1} thumbLink={item.thumbLink}></Thumb> : <Video link={item.link1} vidLink={item.link2}></Video>}</div>
+      })}
     </div>
   );
 }
