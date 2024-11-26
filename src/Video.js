@@ -3,7 +3,7 @@ import React from 'react'
 const Video = ({ link, vidLink }) => {
     return (
         <div>
-            <a href={link}>
+            <a href={link} target='_blank'>
                 <video height='200' width='200' src={vidLink} muted autoPlay={true} loop='loop'></video>
             </a>
         </div>

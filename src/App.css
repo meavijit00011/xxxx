@@ -4,3 +4,20 @@
   justify-items: center;
   grid-row-gap: 20px;
 }
+.action{
+  position:fixed;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.action button{
+  border: none;
+  outline: none;
+  margin-right: 5px;
+  background-color: grey;
+  height: 50px;
+  width: 50px;
+}
+.action span{
+  color: grey;
+  margin-right: 5px;
+}
